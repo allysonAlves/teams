@@ -2,7 +2,7 @@ import axios from 'axios';
 import { DeviceEventEmitter } from 'react-native';
 
 export const Axios = axios.create({
-    baseURL: 'http://172.27.176.1:3000/',
+    baseURL: process.env.EXPO_PUBLIC_API_URL,
     timeout: 10000,
     headers: {
       'content-type': 'application/json',
