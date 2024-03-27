@@ -6,6 +6,9 @@ import Groups from './src/screens/Groups';
 import theme from './src/theme';
 import Loading from './src/components/Loading';
 import { StatusBar } from 'react-native';
+import Routes from './src/routes';
+import AppProvider from './src/context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 export default function App() {
@@ -13,14 +16,18 @@ export default function App() {
 
 
   return (
-    <ThemeProvider theme={theme}>
-      <StatusBar
-        backgroundColor='transparent'
-        barStyle='light-content'
-        translucent
-      />
-      { fontsLoaded ?  <Groups/> : <Loading/>}
-    </ThemeProvider>
+    <AppProvider>         
+      <ThemeProvider theme={theme}>
+        <StatusBar
+          backgroundColor='transparent'
+          barStyle='light-content'
+          translucent
+          />                  
+        <SafeAreaView style={{flex: 1, backgroundColor: theme.COLORS.GRAY_600, paddingTop: 10}}>
+          { fontsLoaded ?  <Routes/> : <Loading/>}
+        </SafeAreaView>
+      </ThemeProvider>   
+    </AppProvider>
   );
 }
 
