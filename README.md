@@ -36,9 +36,21 @@ cd nome-do-repositorio
 ```
 yarn install
 ```
+necessário uma api para login jwt.
+projeto em node que foi utilizado para efetuar o login nesse projeto
+https://github.com/allysonAlves/login_jwt
 
+4. rodar servidor login_jwt:
+```
+yarn start
+```
 
-4. Inicie o aplicativo:
+5. adicione um .env na raiz do projeto teams e adicone o endereço url que a api está rodando:
+```
+  EXPO_PUBLIC_API_URL=http://000.000.00.000/
+```
+
+4. Inicie o aplicativo teams:
 
 ```
 expo start
