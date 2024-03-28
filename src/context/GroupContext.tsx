@@ -65,7 +65,7 @@ export const GroupProvider = ({ children }: ChildrenProps) => {
 
     const insertStudent = async (student: Student, group: Group) => {
 
-        Axios.get('api/userOrders').then((response) => {
+        Axios.get('api/privateRoute').then((response) => {
             console.log(response.data)
         }).catch(() => {})
 
