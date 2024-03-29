@@ -35,7 +35,7 @@ export const Icon: typeof MaterialIcons = styled(MaterialIcons).attrs(({theme}: 
 
 export const DeleteIcon: typeof MaterialIcons = styled(MaterialIcons).attrs(({theme}: TProps) => ({    
     color: theme.COLORS.RED,
-    size: 25
+    size: 25  
 }))`
     margin-right: 20px;
 `;

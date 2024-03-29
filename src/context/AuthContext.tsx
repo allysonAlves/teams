@@ -17,13 +17,13 @@ export const AuthProvider = ({ children }: ChildrenProps) => {
       password,
     };
 
-    Axios.post<loginResponse>("api/login", request)
+    Axios.post<loginResponse>("api/signIn", request)
       .then((response) => {
         Axios.defaults.headers.common.Authorization =
           "Bearer " + response.data.access_token;
 
         setUser({ email, name: "Allyson" });
-        AuthStorage.storageUserSave({ email, name: "Allyson" });
+        AuthStorage.storageUserSave({ email, name: "Allyson", access_token: response.data.access_token });
       })
       .catch((error) => {
         console.log(error);
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }: ChildrenProps) => {
       password,
     };
 
-    Axios.post("api/createNewUser", request)
+    Axios.post("api/signUp", request)
       .then((resp) => {})
       .catch((error) => {});
   };
@@ -51,7 +51,10 @@ export const AuthProvider = ({ children }: ChildrenProps) => {
       const savedUser = await AuthStorage.storageUserGet();
 
       if (savedUser) {
-        setUser(JSON.parse(savedUser));
+        const userObj = JSON.parse(savedUser);
+        setUser(userObj);
+        Axios.defaults.headers.common.Authorization =
+        "Bearer " + userObj.access_token;
       }
     } catch (err) {
       console.log(err);
